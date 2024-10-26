@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sample-job
+spec:
+  activeDeadlineSeconds: 40
+  template:
+    spec:
+      containers:
+        - name: sample-nodejs-job
+          image: naveen5758/sample-nodejs:v1.0
+      restartPolicy: Never
