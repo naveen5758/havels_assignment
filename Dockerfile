@@ -1,11 +1,8 @@
-FROM node:latest AS builder
-WORKDIR /usr/src/app
-COPY . .
+FROM node:14
+WORKDIR /app
 COPY package*.json ./
 RUN npm install
+COPY . .
+EXPOSE 3000
+CMD ["npm", "start"]
 
-
-FROM nginx:1.24-alpine AS server
-COPY --from=builder /usr/src/app /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 8080
